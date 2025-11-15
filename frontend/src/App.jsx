@@ -1,4 +1,6 @@
 import "./App.css";
+import { useEffect, useState } from "react";
+import QuoteItem from "./QuoteItem";
 
 function App() {
 	return (
