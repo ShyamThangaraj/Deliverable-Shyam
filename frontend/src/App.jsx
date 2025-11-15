@@ -4,13 +4,11 @@ import QuoteItem from "./QuoteItem";
 
 function App() {
 	const [quotes, setQuotes] = useState([]);
-
+	const [maxAge, setMaxAge] = useState("all");
 	useEffect(() => {
-		// Load all quotes on page load
 		const fetchQuotes = async () => {
 			try {
-				// Use /api so the frontend dev server can proxy to the backend
-				const res = await fetch("/api/quotes?max_age=all");
+				const res = await fetch(`/api/quotes?max_age=${maxAge}`);
 				if (!res.ok) {
 					console.error("Failed to fetch quotes:", res.status);
 					return;
@@ -23,7 +21,7 @@ function App() {
 		};
 
 		fetchQuotes();
-	}, []);
+	}, [maxAge]); // <-- re-fetch whenever maxAge changes
 
 	return (
 		<div className="App">
@@ -41,6 +39,20 @@ function App() {
 			</form>
 
 			<h2>Previous Quotes</h2>
+			<div className="filters">
+				<label htmlFor="max-age">Show quotes from: </label>
+				<select
+					id="max-age"
+					value={maxAge}
+					onChange={(e) => setMaxAge(e.target.value)}
+				>
+					<option value="week">Last week</option>
+					<option value="month">Last month</option>
+					<option value="year">Last year</option>
+					<option value="all">All time</option>
+				</select>
+			</div>
+
 			<div className="messages">
 				{quotes.length === 0 ? (
 					<p>No quotes yet. Be the first!</p>
