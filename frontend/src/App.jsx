@@ -3,6 +3,28 @@ import { useEffect, useState } from "react";
 import QuoteItem from "./QuoteItem";
 
 function App() {
+	const [quotes, setQuotes] = useState([]);
+
+	useEffect(() => {
+		// Load all quotes on page load
+		const fetchQuotes = async () => {
+			try {
+				// Use /api so the frontend dev server can proxy to the backend
+				const res = await fetch("/api/quotes?max_age=all");
+				if (!res.ok) {
+					console.error("Failed to fetch quotes:", res.status);
+					return;
+				}
+				const data = await res.json();
+				setQuotes(data);
+			} catch (err) {
+				console.error("Error fetching quotes:", err);
+			}
+		};
+
+		fetchQuotes();
+	}, []);
+
 	return (
 		<div className="App">
 			{/* TODO: include an icon for the quote book */}
@@ -19,11 +41,19 @@ function App() {
 			</form>
 
 			<h2>Previous Quotes</h2>
-			{/* TODO: Display the actual quotes from the database */}
 			<div className="messages">
-				<p>Peter Anteater</p>
-				<p>Zot Zot Zot!</p>
-				<p>Every day</p>
+				{quotes.length === 0 ? (
+					<p>No quotes yet. Be the first!</p>
+				) : (
+					quotes.map((q, idx) => (
+						<QuoteItem
+							key={idx}
+							name={q.name}
+							message={q.message}
+							time={q.time}
+						/>
+					))
+				)}
 			</div>
 		</div>
 	);
