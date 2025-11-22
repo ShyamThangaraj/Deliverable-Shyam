@@ -2,9 +2,9 @@
 
 **Note About Uvicorn Auto-Reload**
 
-If you notice unexpected reload loops when running the API, it may be due to having your `.venv` folder **inside the `api/` directory**. Uvicorn’s file watcher can sometimes still detect changes inside `.venv` even when excluded.
+If you notice unexpected reload loops, it may be caused by macOS/iCloud **touching files inside `.venv`** while syncing. Even though `.venv` is excluded, iCloud updates file timestamps during sync, which makes Uvicorn think the environment is constantly changing — triggering repeated reloads.
 
-If this happens, a simple fix is to keep your virtual environment **in the project root** instead of inside `api/`.
+If this happens, the simplest fix is to **wait until the folder finishes syncing**. Once iCloud is done updating file metadata, the reload loops stop automatically. Or move the venv to the root folder.
 
 Thanks for understanding! 🙏
 
