@@ -10,5 +10,6 @@ if __name__ == "__main__":
         port=8000,
         log_level="info",
         reload=True,
-        root_path="/api"
+        root_path="/api",
+        reload_excludes=["**/.venv/**"]
     )
