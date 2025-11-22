@@ -18,5 +18,6 @@ if __name__ == "__main__":
             ".venv/*",
             "**/venv/**",
             "**/.venv/**",
+            "*/site-packages/*",
         ]
     )
