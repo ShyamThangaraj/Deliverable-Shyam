@@ -1,8 +1,11 @@
 # Hack at UCI Tech Organizer Deliverable
 
 **Note About Uvicorn Auto-Reload**
+
 If you notice unexpected reload loops when running the API, it may be due to having your `.venv` folder **inside the `api/` directory**. Uvicorn’s file watcher can sometimes still detect changes inside `.venv` even when excluded.
+
 If this happens, a simple fix is to keep your virtual environment **in the project root** instead of inside `api/`.
+
 Thanks for understanding! 🙏
 
 ## Setup
