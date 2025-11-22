@@ -15,7 +15,7 @@ Thanks for understanding! 🙏
 Clone this repository to your local machine by running the command below:
 
 ```bash
-git clone https://github.com/HackAtUCI/tech-deliverable.git
+git clone https://github.com/ShyamThangaraj/Deliverable-Shyam.git
 ```
 
 If you are unfamiliar with `git`, we recommend that you become familiar
