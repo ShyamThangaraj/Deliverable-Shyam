@@ -11,5 +11,12 @@ if __name__ == "__main__":
         log_level="info",
         reload=True,
         root_path="/api",
-        reload_excludes=["**/.venv/**"]
+        reload_excludes=[
+            "venv",
+            "venv/*",
+            ".venv",
+            ".venv/*",
+            "**/venv/**",
+            "**/.venv/**",
+        ],
     )
